@@ -1,0 +1,1 @@
+console.log("ChatGPT Project Manager loaded");
