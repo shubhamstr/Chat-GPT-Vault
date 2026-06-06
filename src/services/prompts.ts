@@ -1,17 +1,30 @@
 export async function savePrompt(
-    prompt: any
+    prompt: unknown
 ) {
     const result =
         await chrome.storage.local.get(
             "prompts"
         );
 
-    const prompts =
-        result.prompts || [];
+    const prompts: unknown[] =
+        (result.prompts as unknown[]) ||
+        [];
 
     prompts.push(prompt);
 
     await chrome.storage.local.set({
         prompts,
     });
+}
+
+export async function getPrompts() {
+    const result =
+        await chrome.storage.local.get(
+            "prompts"
+        );
+
+    return (
+        (result.prompts as unknown[]) ||
+        []
+    );
 }

@@ -1,10 +1,10 @@
-import { ChatMessage } from "../types";
+import type { ChatMessage } from "../types";
 
 export function extractChat(): ChatMessage[] {
     const messages: ChatMessage[] = [];
 
     const blocks = document.querySelectorAll(
-        '[data-message-author-role]'
+        "[data-message-author-role]"
     );
 
     blocks.forEach((block) => {
