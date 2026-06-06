@@ -1,4 +1,4 @@
-import { ManifestV3Export } from "@crxjs/vite-plugin";
+import type { ManifestV3Export } from "@crxjs/vite-plugin";
 
 const manifest: ManifestV3Export = {
     manifest_version: 3,
@@ -13,13 +13,9 @@ const manifest: ManifestV3Export = {
         128: "icon.png",
     },
 
-    permissions: [
-        "storage"
-    ],
+    permissions: ["storage"],
 
-    host_permissions: [
-        "https://chatgpt.com/*"
-    ],
+    host_permissions: ["https://chatgpt.com/*"],
 
     background: {
         service_worker: "src/background/index.ts",
@@ -32,12 +28,8 @@ const manifest: ManifestV3Export = {
 
     content_scripts: [
         {
-            matches: [
-                "https://chatgpt.com/*"
-            ],
-            js: [
-                "src/content/index.ts"
-            ],
+            matches: ["https://chatgpt.com/*"],
+            js: ["src/content/index.ts"],
         },
     ],
 };

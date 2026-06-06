@@ -3,5 +3,5 @@ export function findChats() {
         ...document.querySelectorAll(
             'a[href*="/c/"]'
         ),
-    ]
+    ];
 }

@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     width: 320px;
+    font-family: Arial, sans-serif;
 }
 
 .container {
@@ -17,21 +17,25 @@ input {
     width: 100%;
     box-sizing: border-box;
     padding: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 button {
-    width: 100%;
-    padding: 8px;
     cursor: pointer;
+    padding: 8px;
 }
 
 ul {
-    list-style: none;
     padding: 0;
+    list-style: none;
 }
 
 li {
-    padding: 6px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 0;
+
     border-bottom: 1px solid #ddd;
 }

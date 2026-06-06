@@ -1,55 +1,77 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import "./popup.css";
+
+interface Folder {
+    id: string;
+    name: string;
+}
 
 export default function App() {
     const [folders, setFolders] =
-        useState<any[]>([])
+        useState<Folder[]>([]);
 
     const [folderName, setFolderName] =
-        useState('')
+        useState("");
 
     async function loadFolders() {
         const result =
             await chrome.storage.local.get(
-                'folders'
-            )
+                "folders"
+            );
 
-        setFolders(result.folders || [])
+        setFolders(
+            (result.folders as Folder[]) || []
+        );
     }
 
     async function createFolder() {
-        const newFolder = {
+        if (!folderName.trim()) {
+            return;
+        }
+
+        const newFolder: Folder = {
             id: crypto.randomUUID(),
             name: folderName,
-        }
+        };
 
         const updated = [
             ...folders,
             newFolder,
-        ]
+        ];
 
         await chrome.storage.local.set({
             folders: updated,
-        })
+        });
 
-        setFolders(updated)
-        setFolderName('')
+        setFolders(updated);
+        setFolderName("");
+    }
+
+    async function deleteFolder(
+        id: string
+    ) {
+        const updated = folders.filter(
+            (folder) => folder.id !== id
+        );
+
+        await chrome.storage.local.set({
+            folders: updated,
+        });
+
+        setFolders(updated);
     }
 
     useEffect(() => {
-        loadFolders()
-    }, [])
+        loadFolders();
+    }, []);
 
     return (
-        <div
-            style={{
-                width: 300,
-                padding: 15,
-            }}
-        >
+        <div className="container">
             <h2>Folders</h2>
 
             <input
+                type="text"
+                placeholder="Folder name"
                 value={folderName}
                 onChange={(e) =>
                     setFolderName(
@@ -61,16 +83,26 @@ export default function App() {
             <button
                 onClick={createFolder}
             >
-                Create
+                Create Folder
             </button>
 
             <ul>
                 {folders.map((folder) => (
                     <li key={folder.id}>
-                        {folder.name}
+                        <span>
+                            {folder.name}
+                        </span>
+
+                        <button
+                            onClick={() =>
+                                deleteFolder(folder.id)
+                            }
+                        >
+                            Delete
+                        </button>
                     </li>
                 ))}
             </ul>
         </div>
-    )
+    );
 }
