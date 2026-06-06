@@ -2,18 +2,21 @@ export default function App() {
     return (
         <div
             style={{
+                width: "300px",
                 padding: "16px",
-                width: "320px",
+                background: "white",
+                color: "black",
             }}
         >
-            <h2>
-                ChatGPT Workspace
-            </h2>
+            <h1>ChatGPT Workspace</h1>
 
-            <p>
-                Export, Notes &
-                Prompts
-            </p>
+            <button
+                onClick={() => {
+                    alert("Working!");
+                }}
+            >
+                Test Button
+            </button>
         </div>
     );
 }

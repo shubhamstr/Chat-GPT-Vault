@@ -1,11 +1,11 @@
 export function createToolbar() {
-    const toolbar =
-        document.createElement("div");
+  const toolbar =
+    document.createElement("div");
 
-    toolbar.id =
-        "chatgpt-workspace-toolbar";
+  toolbar.id =
+    "chatgpt-workspace-toolbar";
 
-    toolbar.innerHTML = `
+  toolbar.innerHTML = `
     <button id="copy-md">
       Copy MD
     </button>
@@ -19,26 +19,29 @@ export function createToolbar() {
     </button>
   `;
 
-    toolbar.style.position =
-        "fixed";
+  toolbar.style.position =
+    "fixed";
 
-    toolbar.style.bottom = "20px";
+  toolbar.style.bottom = "20px";
 
-    toolbar.style.right = "20px";
+  toolbar.style.right = "20px";
 
-    toolbar.style.zIndex = "99999";
+  toolbar.style.zIndex = "99999";
 
-    toolbar.style.background =
-        "white";
+  toolbar.style.background =
+    "#212121";
 
-    toolbar.style.padding = "10px";
+  toolbar.style.borderRadius =
+    "5px";
 
-    toolbar.style.border =
-        "1px solid #ddd";
+  toolbar.style.padding = "10px";
 
-    document.body.appendChild(
-        toolbar
-    );
+  // toolbar.style.border =
+  //   "1px solid #ddd";
 
-    return toolbar;
+  document.body.appendChild(
+    toolbar
+  );
+
+  return toolbar;
 }
