@@ -1,74 +1,46 @@
-import { findChats } from "../utils/chatScanner";
+import { extractChat } from "./chatExtractor";
+import { generateMarkdown } from "../services/markdown";
+import { downloadFile } from "../utils/download";
+import { createToolbar } from "./toolbar";
 
-async function updateSelectedChats(
-    chatId: string,
-    checked: boolean
-) {
-    const result = await chrome.storage.local.get(
-        "selectedChats"
+const toolbar =
+    createToolbar();
+
+toolbar
+    .querySelector("#copy-md")
+    ?.addEventListener(
+        "click",
+        async () => {
+            const chat =
+                extractChat();
+
+            const markdown =
+                generateMarkdown(chat);
+
+            await navigator.clipboard.writeText(
+                markdown
+            );
+
+            alert(
+                "Copied as Markdown"
+            );
+        }
     );
 
-    const selected: string[] =
-        (result.selectedChats as string[]) || [];
+toolbar
+    .querySelector("#download-md")
+    ?.addEventListener(
+        "click",
+        () => {
+            const chat =
+                extractChat();
 
-    if (checked) {
-        if (!selected.includes(chatId)) {
-            selected.push(chatId);
+            const markdown =
+                generateMarkdown(chat);
+
+            downloadFile(
+                "chat.md",
+                markdown
+            );
         }
-    } else {
-        const index = selected.indexOf(chatId);
-
-        if (index !== -1) {
-            selected.splice(index, 1);
-        }
-    }
-
-    await chrome.storage.local.set({
-        selectedChats: selected,
-    });
-}
-
-function injectCheckboxes() {
-    const chats = findChats();
-
-    chats.forEach((chat) => {
-        const link = chat as HTMLAnchorElement;
-
-        if (
-            link.parentElement?.querySelector(
-                ".cgpt-checkbox"
-            )
-        ) {
-            return;
-        }
-
-        const checkbox =
-            document.createElement("input");
-
-        checkbox.type = "checkbox";
-        checkbox.className =
-            "cgpt-checkbox";
-
-        checkbox.style.marginRight = "8px";
-
-        checkbox.addEventListener(
-            "change",
-            async () => {
-                await updateSelectedChats(
-                    link.href,
-                    checkbox.checked
-                );
-            }
-        );
-
-        link.parentElement?.prepend(
-            checkbox
-        );
-    });
-}
-
-setInterval(injectCheckboxes, 3000);
-
-console.log(
-    "ChatGPT Project Manager Loaded"
-);
+    );
