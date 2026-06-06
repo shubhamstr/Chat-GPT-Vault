@@ -1,5 +1,3 @@
 chrome.runtime.onInstalled.addListener(() => {
-    console.log(
-        "ChatGPT Project Manager Installed"
-    );
+    console.log("ChatGPT Workspace installed");
 });
