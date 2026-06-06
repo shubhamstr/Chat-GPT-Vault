@@ -16,7 +16,7 @@ const manifest: ManifestV3Export = {
     },
 
     background: {
-        service_worker: "src/background/index.ts",
+        service_worker: "src/background/background.ts",
         type: "module"
     },
 
@@ -26,7 +26,7 @@ const manifest: ManifestV3Export = {
                 "https://chatgpt.com/*"
             ],
             js: [
-                "src/content/index.ts"
+                "src/content/content.ts"
             ]
         }
     ]
