@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - ChatGPT Vault</title>
+  <meta name="description" content="Privacy Policy for ChatGPT Vault. Learn how we handle your data, storage, security, and third-party integrations.">
+  
+  <!-- Plus Jakarta Sans Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables for Themes */
+    :root {
+      /* Dark Theme (Default) */
+      --bg-color: #0b0f19;
+      --card-bg: rgba(20, 26, 42, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-color: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary-color: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-glow: rgba(99, 102, 241, 0.15);
+      --accent-color: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.12);
+      --shadow: 0 12px 40px -10px rgba(2, 6, 23, 0.7);
+      --header-bg: rgba(11, 15, 25, 0.8);
+      --sidebar-active-bg: rgba(99, 102, 241, 0.12);
+      --sidebar-active-text: #818cf8;
+      --badge-bg: rgba(99, 102, 241, 0.2);
+      --badge-text: #a5b4fc;
+      
+      --glow-1: rgba(99, 102, 241, 0.1);
+      --glow-2: rgba(16, 185, 129, 0.05);
+      --glow-3: rgba(139, 92, 246, 0.08);
+    }
+    
+    html.light-mode {
+      /* Light Theme */
+      --bg-color: #f8fafc;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(0, 0, 0, 0.06);
+      --text-color: #0f172a;
+      --text-muted: #64748b;
+      --primary-color: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-glow: rgba(79, 70, 229, 0.08);
+      --accent-color: #059669;
+      --accent-glow: rgba(5, 150, 105, 0.08);
+      --shadow: 0 12px 40px -10px rgba(15, 23, 42, 0.06);
+      --header-bg: rgba(248, 250, 252, 0.8);
+      --sidebar-active-bg: rgba(79, 70, 229, 0.08);
+      --sidebar-active-text: #4f46e5;
+      --badge-bg: rgba(79, 70, 229, 0.1);
+      --badge-text: #4338ca;
+      
+      --glow-1: rgba(79, 70, 229, 0.03);
+      --glow-2: rgba(5, 150, 105, 0.02);
+      --glow-3: rgba(124, 58, 237, 0.03);
+    }
+    
+    /* Global Reset & Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Decorative Background Glows (Modern Ambient Light) */
+    .bg-glow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.8;
+      transition: background-color 0.3s ease;
+    }
+    
+    .bg-glow-1 {
+      top: -10%;
+      right: -10%;
+      width: 40vw;
+      height: 40vw;
+      background-color: var(--glow-1);
+    }
+    
+    .bg-glow-2 {
+      bottom: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background-color: var(--glow-2);
+    }
+    
+    .bg-glow-3 {
+      top: 40%;
+      left: 30%;
+      width: 35vw;
+      height: 35vw;
+      background-color: var(--glow-3);
+    }
+    
+    /* Header Styles */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    
+    .logo-icon {
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-glow);
+      padding: 0.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-icon {
+      transform: scale(1.05) rotate(5deg);
+    }
+    
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, var(--text-color) 60%, var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    /* Theme Toggle Switch */
+    .theme-toggle-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-color);
+      padding: 0.6rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+    
+    .theme-toggle-btn:hover {
+      background: var(--primary-glow);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    
+    .theme-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+    
+    .theme-toggle-btn .sun-icon {
+      display: none;
+    }
+    
+    html.light-mode .theme-toggle-btn .moon-icon {
+      display: none;
+    }
+    
+    html.light-mode .theme-toggle-btn .sun-icon {
+      display: block;
+    }
+    
+    /* Main Layout */
+    .main-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      flex-grow: 1;
+    }
+    
+    /* Sidebar Navigation */
+    .sidebar {
+      position: sticky;
+      top: 6rem;
+      height: fit-content;
+    }
+    
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      list-style: none;
+    }
+    
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    
+    .sidebar-link svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+      opacity: 0.8;
+      transition: transform 0.2s ease;
+    }
+    
+    .sidebar-link:hover {
+      color: var(--text-color);
+      background-color: var(--card-border);
+    }
+    
+    .sidebar-link:hover svg {
+      transform: translateX(2px);
+    }
+    
+    .sidebar-link.active {
+      color: var(--sidebar-active-text);
+      background-color: var(--sidebar-active-bg);
+      border-color: var(--card-border);
+      font-weight: 600;
+    }
+    
+    /* Content Area */
+    .content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    
+    /* Privacy Policy Intro Card */
+    .intro-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .badge-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--card-border);
+    }
+    
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-color) 40%, var(--primary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .intro-text {
+      font-size: 1.125rem;
+      color: var(--text-color);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    
+    /* Policy Sections */
+    .policy-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      scroll-margin-top: 6rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    
+    .policy-section:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.08), var(--shadow);
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .section-title svg {
+      color: var(--primary-color);
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.25;
+    }
+    
+    .policy-section p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    
+    .policy-section p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Custom List Styling */
+    .feature-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    @media (min-width: 768px) {
+      .feature-list.two-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--card-border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-color);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .feature-item:hover {
+      border-color: var(--primary-color);
+      background-color: var(--primary-glow);
+      transform: translateY(-1px);
+    }
+    
+    .feature-item svg {
+      color: var(--accent-color);
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    /* Contact Section card */
+    .contact-card {
+      background: linear-gradient(135deg, var(--card-bg), rgba(99, 102, 241, 0.04));
+      border: 1px dashed var(--primary-color);
+    }
+    
+    .contact-info {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .contact-name {
+      font-weight: 700;
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+    
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    
+    .contact-email:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(8px);
+      margin-top: auto;
+    }
+    
+    footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Styling */
+    @media (max-width: 900px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin: 1.5rem auto;
+      }
+      
+      .sidebar {
+        position: static;
+      }
+      
+      .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .sidebar-link {
+        white-space: nowrap;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      header {
+        padding: 1rem 1.25rem;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .intro-card, .policy-section {
+        padding: 1.75rem 1.25rem;
+      }
+      
+      .sidebar-nav {
+        gap: 0.35rem;
+      }
+      
+      .sidebar-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient Glow effects -->
+  <div class="bg-glow-container">
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo-container">
+        <div class="logo-icon">
+          <!-- Styled Vault Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            <circle cx="12" cy="16" r="1.5"></circle>
+            <path d="M12 17.5v2"></path>
+          </svg>
+        </div>
+        <span class="logo-text">ChatGPT Vault</span>
+      </a>
+      
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+        <!-- Sun Icon (visible in light mode) -->
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (visible in dark mode) -->
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="main-container">
+    
+    <!-- Table of Contents Sidebar -->
+    <aside class="sidebar">
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#intro" class="sidebar-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            Overview
+          </a>
+        </li>
+        <li>
+          <a href="#collection" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            Data Collection
+          </a>
+        </li>
+        <li>
+          <a href="#storage" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+            Data Storage
+          </a>
+        </li>
+        <li>
+          <a href="#website-access" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Website Access
+          </a>
+        </li>
+        <li>
+          <a href="#sharing" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A3 3 0 1 0 15 5a3 3 0 0 0 3 3zM6 15a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm12 5a3 3 0 1 0-3-3 3 3 0 0 0 3 3z"></path><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            Data Sharing
+          </a>
+        </li>
+        <li>
+          <a href="#security" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Technical &amp; Security
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Contact
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content-area">
+      
+      <!-- Intro Card -->
+      <section id="intro" class="intro-card">
+        <div class="badge-updated">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-top: 1px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg>
+          Last Updated: June 2026
+        </div>
+        <h1>Privacy Policy</h1>
+        <p class="intro-text">
+          ChatGPT Vault (&ldquo;the Extension&rdquo;) helps users save, organize, search, and reuse prompts and responses from ChatGPT. We value your privacy and design our systems to ensure your data stays exclusively in your control.
+        </p>
+      </section>
+
+      <!-- Information We Collect -->
+      <section id="collection" class="policy-section" style="animation-delay: 0.1s;">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          Information We Collect
+        </h2>
+        <p>
+          ChatGPT Vault does not collect, transmit, sell, rent, or share personal information with the developer or third parties.
+        </p>
+        <p>
+          The Extension only processes content that users choose to save from their ChatGPT conversations.
+        </p>
+      </section>
+
+      <!-- Data Storage -->
+      <section id="storage" class="policy-section" style="animation-delay: 0.2s;">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+          Data Storage
+        </h2>
+        <p>
+          All saved data is stored locally on the user's device using the Chrome Storage API. The developer does not have access to this data.
+        </p>
+        <p style="margin-bottom: 0.75rem;">This may include:</p>
+        <ul class="feature-list two-cols">
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Saved prompts
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Saved notes
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            User-created tags
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            User preferences
+          </li>
+        </ul>
+      </section>
+
+      <!-- Website Access -->
+      <section id="website-access" class="policy-section" style="animation-delay: 0.3s;">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Website Access
+        </h2>
+        <p>
+          ChatGPT Vault operates only on <strong>chatgpt.com</strong> and accesses conversation content solely to provide the following features:
+        </p>
+        <ul class="feature-list two-cols" style="margin-bottom: 1.25rem;">
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Save prompts
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Save responses
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Organize saved content
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Search saved content
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Copy saved content
+          </li>
+          <li class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Export content to Markdown
+          </li>
+        </ul>
+        <p>
+          The Extension does not access or collect data from other websites.
+        </p>
+      </section>
+
+      <!-- Data Sharing -->
+      <section id="sharing" class="policy-section" style="animation-delay: 0.4s;">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A3 3 0 1 0 15 5a3 3 0 0 0 3 3zM6 15a3 3 0 1 0-3-3 3 3 0 0 0 3 3zm12 5a3 3 0 1 0-3-3 3 3 0 0 0 3 3z"></path><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          Data Sharing
+        </h2>
+        <p>ChatGPT Vault guarantees that we never engage in monetization or external sharing of your data. Specifically, we do not:</p>
+        <ul class="feature-list" style="margin-top: 0.5rem;">
+          <li class="feature-item" style="background-color: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Sell user data
+          </li>
+          <li class="feature-item" style="background-color: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Share user data with third parties
+          </li>
+          <li class="feature-item" style="background-color: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Use advertising networks
+          </li>
+          <li class="feature-item" style="background-color: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Use tracking technologies
+          </li>
+          <li class="feature-item" style="background-color: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.1);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Use analytics services
+          </li>
+        </ul>
+      </section>
+
+      <!-- Technical & Security Details (Remote Code, Third-Party, Security, Children, Changes) -->
+      <section id="security" class="policy-section" style="animation-delay: 0.5s;">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Technical &amp; Security Details
+        </h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Remote Code</h3>
+            <p>
+              ChatGPT Vault does not download or execute remote code. All extension functionality is bundled within the extension package reviewed by the Chrome Web Store.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Third-Party Services</h3>
+            <p>
+              The Extension does not use third-party services for analytics, advertising, tracking, or data collection.
+            </p>
+            <p>
+              Future optional integrations (such as Google Docs or Notion exports) will require user authorization and will be disclosed in this Privacy Policy before release.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Data Security</h3>
+            <p>
+              All saved information remains on the user's device unless the user explicitly exports or copies the content.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Children's Privacy</h3>
+            <p>
+              ChatGPT Vault is not directed toward children under 13 years of age and does not knowingly collect personal information from children.
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color);">Changes to This Privacy Policy</h3>
+            <p>
+              This Privacy Policy may be updated from time to time. Any updates will be published at this URL with a revised &ldquo;Last Updated&rdquo; date.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="policy-section contact-card" style="animation-delay: 0.6s;">
+        <h2 class="section-title" style="color: var(--primary-color);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Contact Information
+        </h2>
+        <p>
+          For questions, suggestions, or concerns regarding this Privacy Policy or ChatGPT Vault, please get in touch:
+        </p>
+        <div class="contact-info">
+          <div class="contact-name">Shubham Sutar</div>
+          <div>
+            <a href="mailto:your-email@example.com" class="contact-email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top: 1px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              your-email@example.com
+            </a>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2026 ChatGPT Vault. Protected under standard local storage terms.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Designed for clarity, security, and open user ownership.</p>
+    </div>
+  </footer>
+
+  <!-- Theme Toggle & Active Scroll Script -->
+  <script>
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    
+    // Check local storage or preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+      htmlEl.classList.add('light-mode');
+    }
+    
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlEl.classList.contains('light-mode')) {
+        htmlEl.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Active Sidebar Links on Scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
