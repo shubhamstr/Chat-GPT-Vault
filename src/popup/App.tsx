@@ -92,7 +92,7 @@ export default function App() {
             (item) =>
                 item.title.toLowerCase().includes(q) ||
                 item.content.toLowerCase().includes(q) ||
-                item.tags.some((tag) => tag.toLowerCase().includes(q))
+                (item.tags || []).some((tag) => tag.toLowerCase().includes(q))
         );
     };
 

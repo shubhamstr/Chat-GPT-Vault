@@ -45,14 +45,14 @@ export default function PromptsTab({ prompts, onDelete, onUpdateTags }: PromptsT
         const inputVal = tagInputs[prompt.id]?.trim();
         if (inputVal) {
             const rawTags = inputVal.split(",").map((t) => t.trim()).filter((t) => t.length > 0);
-            const updatedTags = Array.from(new Set([...prompt.tags, ...rawTags]));
+            const updatedTags = Array.from(new Set([...(prompt.tags || []), ...rawTags]));
             onUpdateTags(prompt.id, updatedTags);
         }
         setActiveInputId(null);
     };
 
     const handleRemoveTag = (prompt: PromptItem, tagToRemove: string) => {
-        const updatedTags = prompt.tags.filter((t) => t !== tagToRemove);
+        const updatedTags = (prompt.tags || []).filter((t) => t !== tagToRemove);
         onUpdateTags(prompt.id, updatedTags);
     };
 
@@ -105,7 +105,7 @@ export default function PromptsTab({ prompts, onDelete, onUpdateTags }: PromptsT
                         )}
 
                         <div className="item-tags">
-                            {prompt.tags.map((tag) => (
+                            {(prompt.tags || []).map((tag) => (
                                 <span key={tag} className="tag-badge" title="Click to remove tag" style={{ cursor: "pointer" }} onClick={() => handleRemoveTag(prompt, tag)}>
                                     {tag} &times;
                                 </span>

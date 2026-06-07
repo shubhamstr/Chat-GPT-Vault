@@ -2,7 +2,11 @@ import type { NoteItem, PromptItem } from "../types";
 
 export async function getNotes(): Promise<NoteItem[]> {
     const result = await chrome.storage.local.get("notes");
-    return (result.notes as NoteItem[]) || [];
+    const notes = (result.notes as NoteItem[]) || [];
+    return notes.map((note) => ({
+        ...note,
+        tags: Array.isArray(note.tags) ? note.tags : [],
+    }));
 }
 
 export async function saveNote(note: NoteItem): Promise<void> {
@@ -24,7 +28,11 @@ export async function deleteNote(id: string): Promise<void> {
 
 export async function getPrompts(): Promise<PromptItem[]> {
     const result = await chrome.storage.local.get("prompts");
-    return (result.prompts as PromptItem[]) || [];
+    const prompts = (result.prompts as PromptItem[]) || [];
+    return prompts.map((prompt) => ({
+        ...prompt,
+        tags: Array.isArray(prompt.tags) ? prompt.tags : [],
+    }));
 }
 
 export async function savePrompt(prompt: PromptItem): Promise<void> {

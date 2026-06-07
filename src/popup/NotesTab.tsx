@@ -46,14 +46,14 @@ export default function NotesTab({ notes, onDelete, onUpdateTags }: NotesTabProp
         const inputVal = tagInputs[note.id]?.trim();
         if (inputVal) {
             const rawTags = inputVal.split(",").map((t) => t.trim()).filter((t) => t.length > 0);
-            const updatedTags = Array.from(new Set([...note.tags, ...rawTags]));
+            const updatedTags = Array.from(new Set([...(note.tags || []), ...rawTags]));
             onUpdateTags(note.id, updatedTags);
         }
         setActiveInputId(null);
     };
 
     const handleRemoveTag = (note: NoteItem, tagToRemove: string) => {
-        const updatedTags = note.tags.filter((t) => t !== tagToRemove);
+        const updatedTags = (note.tags || []).filter((t) => t !== tagToRemove);
         onUpdateTags(note.id, updatedTags);
     };
 
@@ -106,7 +106,7 @@ export default function NotesTab({ notes, onDelete, onUpdateTags }: NotesTabProp
                         )}
 
                         <div className="item-tags">
-                            {note.tags.map((tag) => (
+                            {(note.tags || []).map((tag) => (
                                 <span key={tag} className="tag-badge" title="Click to remove tag" style={{ cursor: "pointer" }} onClick={() => handleRemoveTag(note, tag)}>
                                     {tag} &times;
                                 </span>
