@@ -2,6 +2,8 @@
 
 **ChatGPT Vault** is a high-performance, developer-friendly Chrome extension that helps you save, search, and manage your ChatGPT interactions. Effortlessly capture prompts and assistant responses as structured notes, manage them with dynamic tags, and quickly copy code/markdown or plain text.
 
+🛍️ **[Chrome Web Store](https://chromewebstore.google.com/detail/ncnaomcidbflhinafcnclklcilmidmhf/preview)** | 🔒 **[Privacy Policy](https://shubhamstr.github.io/Chat-GPT-Vault/)**
+
 ---
 
 ## 🚀 Features
