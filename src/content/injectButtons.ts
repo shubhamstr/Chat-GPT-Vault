@@ -66,6 +66,14 @@ function getDefaultTitle(content: string): string {
     return cleanStr.substring(0, 27) + "...";
 }
 
+function getFriendlyErrorMessage(err: unknown, fallback: string): string {
+    const errMsg = err instanceof Error ? err.message : String(err);
+    if (errMsg.includes("storage is unavailable") || errMsg.includes("Extension context invalidated")) {
+        return "Extension updated! Please refresh the page.";
+    }
+    return fallback;
+}
+
 async function handleSavePrompt(messageEl: HTMLElement) {
     try {
         const text = extractMessageText(messageEl);
@@ -96,15 +104,20 @@ async function handleSavePrompt(messageEl: HTMLElement) {
             defaultTitle,
             defaultTags: [],
             onSave: async (newTitle, tags) => {
-                promptItem.title = newTitle;
-                promptItem.tags = tags;
-                await savePrompt(promptItem);
-                showToast("Prompt updated!", { type: "success", duration: 1500 });
+                try {
+                    promptItem.title = newTitle;
+                    promptItem.tags = tags;
+                    await savePrompt(promptItem);
+                    showToast("Prompt updated!", { type: "success", duration: 1500 });
+                } catch (err) {
+                    console.error("Failed to update prompt:", err);
+                    showToast(getFriendlyErrorMessage(err, "Error updating prompt"), { type: "error" });
+                }
             },
         });
     } catch (err) {
         console.error("Failed to save prompt:", err);
-        showToast("Error saving prompt", { type: "error" });
+        showToast(getFriendlyErrorMessage(err, "Error saving prompt"), { type: "error" });
     }
 }
 
@@ -138,15 +151,20 @@ async function handleSaveNote(messageEl: HTMLElement) {
             defaultTitle,
             defaultTags: [],
             onSave: async (newTitle, tags) => {
-                noteItem.title = newTitle;
-                noteItem.tags = tags;
-                await saveNote(noteItem);
-                showToast("Note updated!", { type: "success", duration: 1500 });
+                try {
+                    noteItem.title = newTitle;
+                    noteItem.tags = tags;
+                    await saveNote(noteItem);
+                    showToast("Note updated!", { type: "success", duration: 1500 });
+                } catch (err) {
+                    console.error("Failed to update note:", err);
+                    showToast(getFriendlyErrorMessage(err, "Error updating note"), { type: "error" });
+                }
             },
         });
     } catch (err) {
         console.error("Failed to save note:", err);
-        showToast("Error saving note", { type: "error" });
+        showToast(getFriendlyErrorMessage(err, "Error saving note"), { type: "error" });
     }
 }
 
