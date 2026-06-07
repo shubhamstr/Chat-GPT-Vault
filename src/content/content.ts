@@ -1,7 +1,8 @@
 import { extractChat } from "./chatExtractor";
 import { generateMarkdown } from "../services/markdown";
-import { downloadFile } from "../utils/download";
 import { createToolbar } from "./toolbar";
+import { saveNote } from "../services/notes";
+import { savePrompt } from "../services/prompts";
 
 const toolbar =
     createToolbar();
@@ -22,25 +23,81 @@ toolbar
             );
 
             alert(
-                "Copied as Markdown"
+                "Markdown copied"
             );
         }
     );
 
 toolbar
-    .querySelector("#download-md")
+    .querySelector("#copy-text")
     ?.addEventListener(
         "click",
-        () => {
-            const chat =
-                extractChat();
+        async () => {
+            const text =
+                document.body.innerText;
 
-            const markdown =
-                generateMarkdown(chat);
+            await navigator.clipboard.writeText(
+                text
+            );
 
-            downloadFile(
-                "chat.md",
-                markdown
+            alert("Text copied");
+        }
+    );
+
+toolbar
+    .querySelector("#save-note")
+    ?.addEventListener(
+        "click",
+        async () => {
+            const title =
+                prompt(
+                    "Note title"
+                ) || "Untitled";
+
+            const text =
+                window.getSelection()?.toString() ||
+                "";
+
+            await saveNote({
+                id:
+                    crypto.randomUUID(),
+                title,
+                content: text,
+                createdAt:
+                    new Date().toISOString(),
+            });
+
+            alert(
+                "Note saved"
+            );
+        }
+    );
+
+toolbar
+    .querySelector("#save-prompt")
+    ?.addEventListener(
+        "click",
+        async () => {
+            const title =
+                prompt(
+                    "Prompt title"
+                ) || "Untitled";
+
+            const text =
+                window.getSelection()?.toString() ||
+                "";
+
+            await savePrompt({
+                id:
+                    crypto.randomUUID(),
+                title,
+                content: text,
+                createdAt:
+                    new Date().toISOString(),
+            });
+
+            alert(
+                "Prompt saved"
             );
         }
     );

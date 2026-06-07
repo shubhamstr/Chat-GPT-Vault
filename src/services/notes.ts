@@ -1,13 +1,20 @@
+export interface Note {
+    id: string;
+    title: string;
+    content: string;
+    createdAt: string;
+}
+
 export async function saveNote(
-    note: unknown
+    note: Note
 ) {
     const result =
         await chrome.storage.local.get(
             "notes"
         );
 
-    const notes: unknown[] =
-        (result.notes as unknown[]) ||
+    const notes: Note[] =
+        (result.notes as Note[]) ||
         [];
 
     notes.push(note);
@@ -24,7 +31,7 @@ export async function getNotes() {
         );
 
     return (
-        (result.notes as unknown[]) ||
+        (result.notes as Note[]) ||
         []
     );
 }

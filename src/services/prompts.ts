@@ -1,13 +1,20 @@
+export interface PromptItem {
+    id: string;
+    title: string;
+    content: string;
+    createdAt: string;
+}
+
 export async function savePrompt(
-    prompt: unknown
+    prompt: PromptItem
 ) {
     const result =
         await chrome.storage.local.get(
             "prompts"
         );
 
-    const prompts: unknown[] =
-        (result.prompts as unknown[]) ||
+    const prompts: PromptItem[] =
+        (result.prompts as PromptItem[]) ||
         [];
 
     prompts.push(prompt);
@@ -24,7 +31,7 @@ export async function getPrompts() {
         );
 
     return (
-        (result.prompts as unknown[]) ||
+        (result.prompts as PromptItem[]) ||
         []
     );
 }
