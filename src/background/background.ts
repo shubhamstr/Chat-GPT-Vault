@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener(() => {
-    console.log("ChatGPT Workspace extension installed.");
+    console.log("ChatGPT Vault extension installed.");
 });

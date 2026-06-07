@@ -28,7 +28,7 @@ export default function App() {
                 setNotes(fetchedNotes);
                 setPrompts(fetchedPrompts);
             } catch (err) {
-                console.error("Failed to load workspace data:", err);
+                console.error("Failed to load vault data:", err);
             } finally {
                 setLoading(false);
             }
@@ -104,7 +104,7 @@ export default function App() {
             <header className="dashboard-header">
                 <div className="brand">
                     <span className="brand-icon">⚡</span>
-                    <h1 className="brand-title">ChatGPT Workspace</h1>
+                    <h1 className="brand-title">ChatGPT Vault</h1>
                 </div>
                 <span className="version">v0.0.1</span>
             </header>
@@ -144,7 +144,7 @@ export default function App() {
 
             {loading ? (
                 <div className="empty-state">
-                    <p className="empty-text">Loading Workspace...</p>
+                    <p className="empty-text">Loading Vault...</p>
                 </div>
             ) : tab === "notes" ? (
                 <NotesTab
