@@ -11,8 +11,21 @@ const manifest: ManifestV3Export = {
         "https://chatgpt.com/*"
     ],
 
+    icons: {
+        "16": "icon.png",
+        "32": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+
     action: {
-        default_popup: "popup.html"
+        default_popup: "popup.html",
+        default_icon: {
+            "16": "icon.png",
+            "32": "icon.png",
+            "48": "icon.png",
+            "128": "icon.png"
+        }
     },
 
     background: {
