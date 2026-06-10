@@ -3,7 +3,8 @@ import type { ManifestV3Export } from "@crxjs/vite-plugin";
 const manifest: ManifestV3Export = {
     manifest_version: 3,
     name: "ChatGPT Vault",
-    version: "0.0.1",
+    version: "0.0.2",
+    description: "Manage chats in ChatGPT like a pro",
 
     permissions: ["storage"],
 
